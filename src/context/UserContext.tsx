@@ -1,6 +1,7 @@
 'use client';
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { ACHIEVEMENTS_DATA } from '@/data/achievements';
 
 interface UserState {
   xp: number;
@@ -9,6 +10,7 @@ interface UserState {
   completedLessons: string[];
   completedQuizzes: string[];
   savedItems: string[];
+  unlockedAchievements: string[];
   addXp: (amount: number) => void;
   markLessonComplete: (id: string, xp: number) => void;
   toggleSaveItem: (id: string) => void;
@@ -22,6 +24,7 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
   const [completedLessons, setCompletedLessons] = useState<string[]>([]);
   const [completedQuizzes, setCompletedQuizzes] = useState<string[]>([]);
   const [savedItems, setSavedItems] = useState<string[]>([]);
+  const [unlockedAchievements, setUnlockedAchievements] = useState<string[]>([]);
 
   useEffect(() => {
     const savedXp = localStorage.getItem('renzz_xp');
@@ -31,6 +34,14 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
     if (savedLessons) setCompletedLessons(JSON.parse(savedLessons));
     if (savedSaved) setSavedItems(JSON.parse(savedSaved));
   }, []);
+
+  // Periksa achievement yang terbuka setiap XP bertambah
+  useEffect(() => {
+    const unlocked = ACHIEVEMENTS_DATA.filter((ach) => ach.requiredXp && xp >= ach.requiredXp).map(
+      (ach) => ach.id
+    );
+    setUnlockedAchievements(unlocked);
+  }, [xp]);
 
   const addXp = (amount: number) => {
     setXp((prev) => {
@@ -60,7 +71,7 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
     localStorage.setItem('renzz_saved', JSON.stringify(updated));
   };
 
-  // Level calculation: Every 100 XP unlocks 1 Level
+  // Setiap 100 XP = 1 Level
   const level = Math.floor(xp / 100) + 1;
 
   return (
@@ -72,6 +83,7 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
         completedLessons,
         completedQuizzes,
         savedItems,
+        unlockedAchievements,
         addXp,
         markLessonComplete,
         toggleSaveItem,
