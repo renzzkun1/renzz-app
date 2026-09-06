@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>RENZZ RPG — Chronicles of the Lost Realm</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Outfit:wght@300;400;600;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800;900&family=Outfit:wght@300;400;600;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-dark: #07090e;
             --panel-bg: rgba(15, 23, 42, 0.75);
-            --panel-border: rgba(255, 255, 255, 0.1);
+            --panel-border: rgba(255, 255, 255, 0.12);
             --accent-cyan: #38bdf8;
             --accent-blue: #6366f1;
             --accent-purple: #a855f7;
@@ -43,8 +43,8 @@
             flex-direction: column;
             overflow-x: hidden;
             background-image: 
-                radial-gradient(circle at 15% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 85% 80%, rgba(168, 85, 247, 0.12) 0%, transparent 40%);
+                radial-gradient(circle at 15% 20%, rgba(99, 102, 241, 0.18) 0%, transparent 40%),
+                radial-gradient(circle at 85% 80%, rgba(168, 85, 247, 0.15) 0%, transparent 40%);
         }
 
         #particle-canvas {
@@ -92,8 +92,8 @@
         }
 
         .brand-icon {
-            width: 36px;
-            height: 36px;
+            width: 38px;
+            height: 38px;
             background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
             border-radius: 10px;
             display: flex;
@@ -107,7 +107,7 @@
 
         .brand-title {
             font-family: 'Cinzel', serif;
-            font-weight: 700;
+            font-weight: 800;
             font-size: 18px;
             letter-spacing: 1px;
             background: linear-gradient(to right, #ffffff, var(--accent-cyan));
@@ -118,7 +118,7 @@
         .player-quick-stats {
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 12px;
             flex-wrap: wrap;
         }
 
@@ -129,13 +129,13 @@
             background: rgba(0, 0, 0, 0.4);
             padding: 6px 12px;
             border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             font-size: 13px;
             font-weight: 600;
         }
 
         .stat-bar-container {
-            width: 120px;
+            width: 110px;
             height: 10px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 5px;
@@ -154,18 +154,20 @@
         .fill-exp { background: linear-gradient(90deg, #a855f7, #c084fc); }
 
         .audio-btn {
-            background: rgba(255,255,255,0.05);
+            background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--panel-border);
             color: var(--text-main);
-            padding: 8px 12px;
+            padding: 8px 14px;
             border-radius: 10px;
             cursor: pointer;
             font-size: 13px;
+            font-weight: 600;
             transition: all 0.2s;
         }
 
         .audio-btn:hover {
-            background: rgba(255,255,255,0.15);
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--accent-cyan);
         }
 
         /* MAIN LAYOUT */
@@ -212,9 +214,9 @@
 
         .nav-btn.active {
             background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(99, 102, 241, 0.15));
-            border-color: rgba(56, 189, 248, 0.3);
+            border-color: rgba(56, 189, 248, 0.35);
             color: var(--accent-cyan);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
 
         /* CONTENT DISPLAY AREA */
@@ -243,7 +245,7 @@
 
         .section-title {
             font-family: 'Cinzel', serif;
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 700;
             color: var(--accent-cyan);
             border-bottom: 1px solid var(--panel-border);
@@ -256,7 +258,7 @@
         /* MAP AREA */
         .map-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 16px;
         }
 
@@ -280,7 +282,7 @@
         .area-card.unlocked:hover {
             border-color: var(--accent-cyan);
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(56, 189, 248, 0.2);
+            box-shadow: 0 8px 24px rgba(56, 189, 248, 0.2);
         }
 
         .area-card.locked {
@@ -297,7 +299,7 @@
         .area-desc {
             font-size: 12px;
             color: var(--text-muted);
-            line-height: 1.4;
+            line-height: 1.5;
         }
 
         .explore-btn {
@@ -309,10 +311,11 @@
             border-radius: 8px;
             font-weight: 700;
             cursor: pointer;
-            transition: opacity 0.2s;
+            transition: opacity 0.2s, transform 0.1s;
         }
 
         .explore-btn:hover { opacity: 0.9; }
+        .explore-btn:active { transform: scale(0.98); }
 
         /* COMBAT ARENA */
         .combat-arena {
@@ -326,17 +329,18 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(0,0,0,0.3);
+            background: rgba(0, 0, 0, 0.3);
             padding: 12px 16px;
             border-radius: 12px;
+            border: 1px solid var(--panel-border);
         }
 
         .battle-stage {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
-            padding: 20px;
-            background: rgba(0,0,0,0.3);
+            padding: 24px;
+            background: rgba(0, 0, 0, 0.35);
             border-radius: 16px;
             border: 1px solid var(--panel-border);
             position: relative;
@@ -354,7 +358,7 @@
 
         .fighter-avatar {
             font-size: 64px;
-            filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));
+            filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.25));
             transition: transform 0.2s;
         }
 
@@ -375,16 +379,18 @@
             background: var(--accent-rose);
             color: #fff;
             font-size: 10px;
-            padding: 2px 6px;
+            padding: 2px 8px;
             border-radius: 4px;
             margin-left: 6px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
         }
 
         .combat-log {
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.6);
             border: 1px solid var(--panel-border);
             border-radius: 12px;
-            height: 120px;
+            height: 130px;
             padding: 12px;
             overflow-y: auto;
             font-family: 'Fira Code', monospace;
@@ -394,7 +400,7 @@
             gap: 6px;
         }
 
-        .log-entry { opacity: 0.9; }
+        .log-entry { opacity: 0.95; }
         .log-player { color: var(--accent-cyan); }
         .log-enemy { color: var(--accent-rose); }
         .log-crit { color: var(--accent-gold); font-weight: bold; }
@@ -407,7 +413,7 @@
         }
 
         .action-btn {
-            background: rgba(255,255,255,0.05);
+            background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--panel-border);
             color: #fff;
             padding: 12px;
@@ -424,8 +430,9 @@
         }
 
         .action-btn:hover:not(:disabled) {
-            background: rgba(255,255,255,0.12);
+            background: rgba(255, 255, 255, 0.12);
             border-color: var(--accent-cyan);
+            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.2);
         }
 
         .action-btn:disabled {
@@ -441,10 +448,10 @@
         }
 
         .item-card {
-            background: rgba(0,0,0,0.4);
+            background: rgba(0, 0, 0, 0.4);
             border: 1px solid var(--panel-border);
             border-radius: 12px;
-            padding: 10px;
+            padding: 12px 10px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -457,19 +464,20 @@
 
         .item-card:hover {
             transform: translateY(-2px);
-            border-color: rgba(255,255,255,0.3);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
         }
 
         .item-icon { font-size: 32px; }
         .item-name { font-size: 12px; font-weight: 600; }
-        .item-rarity { font-size: 10px; text-transform: uppercase; font-weight: 800; }
+        .item-rarity { font-size: 10px; text-transform: uppercase; font-weight: 800; letter-spacing: 0.5px; }
 
-        .rarity-common { color: var(--common); border-color: rgba(203, 213, 225, 0.2); }
-        .rarity-uncommon { color: var(--uncommon); border-color: rgba(74, 222, 128, 0.3); }
-        .rarity-rare { color: var(--rare); border-color: rgba(56, 189, 248, 0.4); }
-        .rarity-epic { color: var(--epic); border-color: rgba(192, 132, 252, 0.4); }
-        .rarity-legendary { color: var(--legendary); border-color: rgba(251, 191, 36, 0.5); }
-        .rarity-mythic { color: var(--mythic); border-color: rgba(244, 63, 94, 0.6); }
+        .rarity-common { color: var(--common); border-color: rgba(203, 213, 225, 0.25); }
+        .rarity-uncommon { color: var(--uncommon); border-color: rgba(74, 222, 128, 0.35); }
+        .rarity-rare { color: var(--rare); border-color: rgba(56, 189, 248, 0.45); }
+        .rarity-epic { color: var(--epic); border-color: rgba(192, 132, 252, 0.45); }
+        .rarity-legendary { color: var(--legendary); border-color: rgba(251, 191, 36, 0.55); }
+        .rarity-mythic { color: var(--mythic); border-color: rgba(244, 63, 94, 0.65); }
 
         .equipment-slots {
             display: grid;
@@ -479,7 +487,7 @@
         }
 
         .equip-slot {
-            background: rgba(0,0,0,0.3);
+            background: rgba(0, 0, 0, 0.3);
             border: 1px dashed var(--panel-border);
             border-radius: 12px;
             padding: 12px;
@@ -496,7 +504,7 @@
         }
 
         .quest-card {
-            background: rgba(0,0,0,0.4);
+            background: rgba(0, 0, 0, 0.4);
             border: 1px solid var(--panel-border);
             border-radius: 12px;
             padding: 16px;
@@ -508,7 +516,7 @@
 
         .quest-info { display: flex; flex-direction: column; gap: 4px; }
         .quest-title { font-weight: 700; font-size: 15px; }
-        .quest-reward { font-size: 12px; color: var(--accent-gold); }
+        .quest-reward { font-size: 12px; color: var(--accent-gold); font-weight: 600; }
 
         /* SKILLS TREE */
         .skill-grid {
@@ -518,7 +526,7 @@
         }
 
         .skill-card {
-            background: rgba(0,0,0,0.4);
+            background: rgba(0, 0, 0, 0.4);
             border: 1px solid var(--panel-border);
             border-radius: 12px;
             padding: 14px;
@@ -533,7 +541,7 @@
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(8px);
             z-index: 100;
             display: none;
@@ -554,7 +562,7 @@
             display: flex;
             flex-direction: column;
             gap: 16px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
         }
 
         /* MOBILE NAV */
@@ -583,7 +591,7 @@
     <canvas id="particle-canvas"></canvas>
 
     <div class="game-wrapper">
-        <!-- TOP STATUS BAR -->
+        <!-- BAR STATUS ATAS -->
         <header class="top-bar">
             <div class="brand">
                 <div class="brand-icon">R</div>
@@ -623,50 +631,50 @@
             </div>
         </header>
 
-        <!-- MAIN LAYOUT -->
+        <!-- TAMPILAN UTAMA -->
         <div class="main-layout">
-            <!-- SIDEBAR NAVIGATION -->
+            <!-- SIDEBAR NAVIGASI -->
             <nav class="sidebar">
-                <button class="nav-btn active" data-tab="tab-map">🗺️ World Map</button>
-                <button class="nav-btn" data-tab="tab-character">⚔️ Character</button>
-                <button class="nav-btn" data-tab="tab-inventory">🎒 Inventory</button>
-                <button class="nav-btn" data-tab="tab-quests">📜 Quests</button>
-                <button class="nav-btn" data-tab="tab-skills">✨ Skills</button>
-                <button class="nav-btn" data-tab="tab-shop">🏪 Shop</button>
-                <button class="nav-btn" data-tab="tab-blacksmith">🔨 Blacksmith</button>
-                <button class="nav-btn" data-tab="tab-system">⚙️ System</button>
+                <button class="nav-btn active" data-tab="tab-map">🗺️ Peta Dunia</button>
+                <button class="nav-btn" data-tab="tab-character">⚔️ Karakter</button>
+                <button class="nav-btn" data-tab="tab-inventory">🎒 Tas Penyimpanan</button>
+                <button class="nav-btn" data-tab="tab-quests">📜 Misi & Quests</button>
+                <button class="nav-btn" data-tab="tab-skills">✨ Keahlian</button>
+                <button class="nav-btn" data-tab="tab-shop">🏪 Toko</button>
+                <button class="nav-btn" data-tab="tab-blacksmith">🔨 Pandai Besi</button>
+                <button class="nav-btn" data-tab="tab-system">⚙️ Pengaturan</button>
             </nav>
 
-            <!-- CONTENT AREA -->
+            <!-- AREA KONTEN -->
             <main class="content-area">
-                <!-- WORLD MAP -->
+                <!-- PETA DUNIA -->
                 <section id="tab-map" class="tab-content active">
                     <div class="section-title">
-                        <span>World Map</span>
-                        <span id="current-location-txt" style="font-size: 14px; color: var(--text-muted);">Location: Starter Village</span>
+                        <span>Peta Dunia</span>
+                        <span id="current-location-txt" style="font-size: 14px; color: var(--text-muted);">Lokasi: Desa Awal</span>
                     </div>
                     <div class="map-grid" id="map-grid"></div>
                 </section>
 
-                <!-- COMBAT -->
+                <!-- PERTANDINGAN / BATTLE -->
                 <section id="tab-combat" class="tab-content">
                     <div class="combat-arena">
                         <div class="combat-header">
-                            <span id="combat-area-title" style="font-family: 'Cinzel'; font-weight:700;">Battle</span>
-                            <button id="btn-runaway" class="audio-btn" style="color: var(--accent-rose);">🏃 Escape</button>
+                            <span id="combat-area-title" style="font-family: 'Cinzel'; font-weight:700;">Pertempuran</span>
+                            <button id="btn-runaway" class="audio-btn" style="color: var(--accent-rose);">🏃 Kabur</button>
                         </div>
 
                         <div class="battle-stage">
-                            <!-- PLAYER -->
+                            <!-- PEMAIN -->
                             <div class="fighter-card" id="player-card">
                                 <div class="fighter-avatar">🧙‍♂️</div>
-                                <div class="fighter-name">Hero</div>
+                                <div class="fighter-name">Pahlawan</div>
                                 <div class="stat-bar-container" style="width: 140px;">
                                     <div id="battle-hp-player" class="stat-bar-fill fill-hp" style="width:100%;"></div>
                                 </div>
                             </div>
 
-                            <!-- ENEMY -->
+                            <!-- MUSUH -->
                             <div class="fighter-card" id="enemy-card">
                                 <div id="enemy-avatar" class="fighter-avatar">👾</div>
                                 <div class="fighter-name"><span id="enemy-name">Monster</span> <span id="boss-tag" class="boss-badge" style="display:none;">BOSS</span></div>
@@ -679,67 +687,67 @@
                         <div class="combat-log" id="combat-log"></div>
 
                         <div class="combat-actions">
-                            <button class="action-btn" id="btn-act-attack">⚔️ Basic Attack</button>
-                            <button class="action-btn" id="btn-act-skill">✨ Cast Skill</button>
-                            <button class="action-btn" id="btn-act-heal">🧪 Potion</button>
+                            <button class="action-btn" id="btn-act-attack">⚔️ Serangan Dasar</button>
+                            <button class="action-btn" id="btn-act-skill">✨ Gunakan Skill</button>
+                            <button class="action-btn" id="btn-act-heal">🧪 Ramuan Obat</button>
                         </div>
                     </div>
                 </section>
 
-                <!-- CHARACTER STATS -->
+                <!-- STATISTIK KARAKTER -->
                 <section id="tab-character" class="tab-content">
-                    <div class="section-title">Character Attributes</div>
+                    <div class="section-title">Atribut Karakter</div>
                     <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
-                        <div style="background: rgba(0,0,0,0.3); padding: 16px; border-radius: 12px;">
-                            <h4 style="color: var(--accent-cyan); margin-bottom: 12px;">Combat Stats</h4>
-                            <p>⚔️ Attack: <strong id="stat-atk">10</strong></p>
-                            <p>🛡️ Defense: <strong id="stat-def">5</strong></p>
-                            <p>🎯 Critical Chance: <strong id="stat-crit">5%</strong></p>
+                        <div style="background: rgba(0,0,0,0.3); padding: 16px; border-radius: 12px; border: 1px solid var(--panel-border);">
+                            <h4 style="color: var(--accent-cyan); margin-bottom: 12px;">Statistik Bertarung</h4>
+                            <p style="margin-bottom: 6px;">⚔️ Serangan: <strong id="stat-atk">10</strong></p>
+                            <p style="margin-bottom: 6px;">🛡️ Pertahanan: <strong id="stat-def">5</strong></p>
+                            <p>🎯 Peluang Kritis: <strong id="stat-crit">5%</strong></p>
                         </div>
-                        <div style="background: rgba(0,0,0,0.3); padding: 16px; border-radius: 12px;">
-                            <h4 style="color: var(--accent-purple); margin-bottom: 12px;">Equipment Slots</h4>
+                        <div style="background: rgba(0,0,0,0.3); padding: 16px; border-radius: 12px; border: 1px solid var(--panel-border);">
+                            <h4 style="color: var(--accent-purple); margin-bottom: 12px;">Slot Perlengkapan</h4>
                             <div id="equip-slots" class="equipment-slots"></div>
                         </div>
                     </div>
                 </section>
 
-                <!-- INVENTORY -->
+                <!-- TAS PENYIMPANAN -->
                 <section id="tab-inventory" class="tab-content">
-                    <div class="section-title">Bag Inventory</div>
+                    <div class="section-title">Tas Penyimpanan</div>
                     <div class="inventory-grid" id="inventory-grid"></div>
                 </section>
 
-                <!-- QUESTS -->
+                <!-- MISI & QUESTS -->
                 <section id="tab-quests" class="tab-content">
-                    <div class="section-title">Quest Journal</div>
+                    <div class="section-title">Jurnal Misi</div>
                     <div class="quest-list" id="quest-list"></div>
                 </section>
 
-                <!-- SKILLS -->
+                <!-- KEAHLIAN / SKILLS -->
                 <section id="tab-skills" class="tab-content">
-                    <div class="section-title">Skill Mastery</div>
+                    <div class="section-title">Penguasaan Keahlian</div>
                     <div class="skill-grid" id="skill-grid"></div>
                 </section>
 
-                <!-- SHOP -->
+                <!-- TOKO / SHOP -->
                 <section id="tab-shop" class="tab-content">
-                    <div class="section-title">Merchant Shop</div>
+                    <div class="section-title">Toko Pedagang</div>
                     <div class="shop-grid" id="shop-grid"></div>
                 </section>
 
-                <!-- BLACKSMITH -->
+                <!-- PAN DAI BESI -->
                 <section id="tab-blacksmith" class="tab-content">
-                    <div class="section-title">Blacksmith Forge</div>
-                    <p style="font-size:13px; color: var(--text-muted); margin-bottom: 16px;">Select an equipped or inventory gear to upgrade using Gold & Materials.</p>
+                    <div class="section-title">Tempaan Pandai Besi</div>
+                    <p style="font-size:13px; color: var(--text-muted); margin-bottom: 16px;">Pilih peralatan yang terpasang atau ada di tas untuk ditingkatkan menggunakan Koin & Bahan.</p>
                     <div id="forge-container" style="display:flex; flex-direction:column; gap:16px;"></div>
                 </section>
 
-                <!-- SYSTEM -->
+                <!-- PENGATURAN SYSTEM -->
                 <section id="tab-system" class="tab-content">
-                    <div class="section-title">System Settings</div>
+                    <div class="section-title">Pengaturan Sistem</div>
                     <div style="display:flex; gap: 12px; flex-wrap: wrap;">
-                        <button class="explore-btn" id="btn-save">💾 Save Game</button>
-                        <button class="explore-btn" id="btn-load" style="background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));">📁 Load Game</button>
+                        <button class="explore-btn" id="btn-save">💾 Simpan Game</button>
+                        <button class="explore-btn" id="btn-load" style="background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));">📁 Muat Simpanan</button>
                         <button class="explore-btn" id="btn-reset" style="background: linear-gradient(135deg, var(--accent-rose), #b91c1c);">⚠️ Reset Data</button>
                     </div>
                 </section>
@@ -747,20 +755,20 @@
         </div>
     </div>
 
-    <!-- MOBILE NAVIGATION -->
+    <!-- NAVIGASI HP / MOBILE -->
     <div class="mobile-nav">
-        <button class="nav-btn active" data-tab="tab-map">🗺️ Map</button>
-        <button class="nav-btn" data-tab="tab-character">⚔️ Hero</button>
-        <button class="nav-btn" data-tab="tab-inventory">🎒 Bag</button>
-        <button class="nav-btn" data-tab="tab-quests">📜 Quest</button>
-        <button class="nav-btn" data-tab="tab-shop">🏪 Shop</button>
+        <button class="nav-btn active" data-tab="tab-map">🗺️ Peta</button>
+        <button class="nav-btn" data-tab="tab-character">⚔️ Karakter</button>
+        <button class="nav-btn" data-tab="tab-inventory">🎒 Tas</button>
+        <button class="nav-btn" data-tab="tab-quests">📜 Misi</button>
+        <button class="nav-btn" data-tab="tab-shop">🏪 Toko</button>
     </div>
 
-    <!-- ITEM DETAIL MODAL -->
+    <!-- MODAL DETAIL ITEM -->
     <div class="modal-overlay" id="item-modal">
         <div class="modal-body">
-            <h3 id="modal-item-name" style="font-family:'Cinzel';">Item Name</h3>
-            <div id="modal-item-desc" style="font-size: 13px; color: var(--text-muted);">Item description...</div>
+            <h3 id="modal-item-name" style="font-family:'Cinzel';">Nama Barang</h3>
+            <div id="modal-item-desc" style="font-size: 13px; color: var(--text-muted);">Deskripsi barang...</div>
             <div id="modal-actions" style="display:flex; gap:10px;"></div>
         </div>
     </div>
@@ -808,45 +816,45 @@
 
         /* --- DATA & CONFIG --- */
         const AREAS = [
-            { id: 'starter', name: 'Starter Village', desc: 'Safe haven with shop and healing.', unlocked: true },
-            { id: 'forest', name: 'Mystic Forest', desc: 'Dense woods filled with slimes and goblins.', unlocked: true },
-            { id: 'ruins', name: 'Forgotten Ruins', desc: 'Ancient stone grounds guarded by undead.', unlocked: false },
-            { id: 'dungeon', name: 'Dark Dungeon', desc: 'Dangerous underground filled with demons.', unlocked: false },
-            { id: 'dragon', name: "Dragon's Realm", desc: 'Lair of the Ancient Fire Dragon.', unlocked: false }
+            { id: 'starter', name: 'Desa Awal', desc: 'Tempat aman untuk berbelanja dan memulihkan stamina.', unlocked: true },
+            { id: 'forest', name: 'Hutan Mistik', desc: 'Hutan lebat yang dipenuhi Slime dan Goblin.', unlocked: true },
+            { id: 'ruins', name: 'Reruntuhan Kuno', desc: 'Lahan batu kuno yang dijaga oleh mayat hidup.', unlocked: false },
+            { id: 'dungeon', name: 'Penjara Bawah Tanah', desc: 'Area bawah tanah berbahaya yang dipenuhi iblis.', unlocked: false },
+            { id: 'dragon', name: 'Wilayah Naga', desc: 'Sarang Naga Api Kuno yang sangat ganas.', unlocked: false }
         ];
 
         const ENEMIES = [
-            // Forest
+            // Hutan
             { name: 'Slime', hp: 30, atk: 6, def: 2, exp: 20, gold: 15, area: 'forest', icon: '🟢' },
             { name: 'Goblin', hp: 50, atk: 10, def: 3, exp: 35, gold: 25, area: 'forest', icon: '👺' },
-            { name: 'Wolf', hp: 70, atk: 14, def: 4, exp: 50, gold: 35, area: 'forest', icon: '🐺' },
-            // Ruins
-            { name: 'Skeleton', hp: 110, atk: 20, def: 6, exp: 80, gold: 60, area: 'ruins', icon: '💀' },
+            { name: 'Serigala', hp: 70, atk: 14, def: 4, exp: 50, gold: 35, area: 'forest', icon: '🐺' },
+            // Reruntuhan
+            { name: 'Tengkorak', hp: 110, atk: 20, def: 6, exp: 80, gold: 60, area: 'ruins', icon: '💀' },
             { name: 'Orc', hp: 160, atk: 28, def: 10, exp: 120, gold: 90, area: 'ruins', icon: '👹' },
-            { name: 'Dark Mage', hp: 130, atk: 35, def: 5, exp: 150, gold: 110, area: 'ruins', icon: '🧙‍♀️' },
+            { name: 'Penyihir Kegelapan', hp: 130, atk: 35, def: 5, exp: 150, gold: 110, area: 'ruins', icon: '🧙‍♀️' },
             // Dungeon
-            { name: 'Shadow Beast', hp: 220, atk: 45, def: 12, exp: 220, gold: 160, area: 'dungeon', icon: '👾' },
-            { name: 'Demon', hp: 300, atk: 60, def: 18, exp: 300, gold: 220, area: 'dungeon', icon: '👿' },
-            { name: 'Ancient Knight', hp: 400, atk: 75, def: 25, exp: 400, gold: 300, area: 'dungeon', icon: '⚔️' },
-            // Dragon Realm
-            { name: 'Fire Elemental', hp: 550, atk: 95, def: 30, exp: 600, gold: 450, area: 'dragon', icon: '🔥' },
-            { name: 'Ice Golem', hp: 700, atk: 110, def: 45, exp: 800, gold: 600, area: 'dragon', icon: '🧊' }
+            { name: 'Monster Bayangan', hp: 220, atk: 45, def: 12, exp: 220, gold: 160, area: 'dungeon', icon: '👾' },
+            { name: 'Iblis', hp: 300, atk: 60, def: 18, exp: 300, gold: 220, area: 'dungeon', icon: '👿' },
+            { name: 'Ksatria Kuno', hp: 400, atk: 75, def: 25, exp: 400, gold: 300, area: 'dungeon', icon: '⚔️' },
+            // Wilayah Naga
+            { name: 'Elemen Api', hp: 550, atk: 95, def: 30, exp: 600, gold: 450, area: 'dragon', icon: '🔥' },
+            { name: 'Golem Es', hp: 700, atk: 110, def: 45, exp: 800, gold: 600, area: 'dragon', icon: '🧊' }
         ];
 
         const BOSSES = [
-            { id: 'b_forest', name: 'Forest Guardian', hp: 200, atk: 22, def: 8, exp: 200, gold: 200, area: 'forest', icon: 'Ent', isBoss: true },
-            { id: 'b_ruins', name: 'Ruin Knight', hp: 450, atk: 50, def: 20, exp: 500, gold: 500, area: 'ruins', icon: '🛡️', isBoss: true },
-            { id: 'b_dungeon', name: 'Shadow Demon', hp: 800, atk: 90, def: 35, exp: 1000, gold: 1000, area: 'dungeon', icon: '🐲', isBoss: true },
-            { id: 'b_dragon', name: 'Ancient Dragon', hp: 1500, atk: 150, def: 60, exp: 2500, gold: 2500, area: 'dragon', icon: '🐉', isBoss: true }
+            { id: 'b_forest', name: 'Penjaga Hutan', hp: 200, atk: 22, def: 8, exp: 200, gold: 200, area: 'forest', icon: '🌳', isBoss: true },
+            { id: 'b_ruins', name: 'Ksatria Reruntuhan', hp: 450, atk: 50, def: 20, exp: 500, gold: 500, area: 'ruins', icon: '🛡️', isBoss: true },
+            { id: 'b_dungeon', name: 'Iblis Bayangan', hp: 800, atk: 90, def: 35, exp: 1000, gold: 1000, area: 'dungeon', icon: '🐲', isBoss: true },
+            { id: 'b_dragon', name: 'Naga Kuno', hp: 1500, atk: 150, def: 60, exp: 2500, gold: 2500, area: 'dragon', icon: '🐉', isBoss: true }
         ];
 
         const ITEMS = {
-            potion_hp: { id: 'potion_hp', name: 'Health Potion', type: 'potion', rarity: 'common', effect: { hp: 50 }, value: 20, icon: '🧪', desc: 'Restores 50 HP.' },
-            potion_mana: { id: 'potion_mana', name: 'Mana Potion', type: 'potion', rarity: 'common', effect: { mana: 30 }, value: 20, icon: '💧', desc: 'Restores 30 Mana.' },
-            iron_sword: { id: 'iron_sword', name: 'Iron Sword', type: 'weapon', rarity: 'common', atk: 10, value: 50, icon: '🗡️', desc: '+10 Attack' },
-            steel_armor: { id: 'steel_armor', name: 'Steel Armor', type: 'armor', rarity: 'uncommon', def: 12, value: 120, icon: '🛡️', desc: '+12 Defense' },
-            flame_blade: { id: 'flame_blade', name: 'Flame Blade', type: 'weapon', rarity: 'rare', atk: 35, crit: 10, value: 350, icon: '🔥', desc: '+35 Attack, +10% Crit' },
-            dragon_mail: { id: 'dragon_mail', name: 'Dragon Mail', type: 'armor', rarity: 'legendary', def: 50, hp: 150, value: 1200, icon: '🐉', desc: '+50 Defense, +150 HP' }
+            potion_hp: { id: 'potion_hp', name: 'Ramuan Darah', type: 'potion', rarity: 'common', effect: { hp: 50 }, value: 20, icon: '🧪', desc: 'Pemulihan 50 HP.' },
+            potion_mana: { id: 'potion_mana', name: 'Ramuan Mana', type: 'potion', rarity: 'common', effect: { mana: 30 }, value: 20, icon: '💧', desc: 'Pemulihan 30 Mana.' },
+            iron_sword: { id: 'iron_sword', name: 'Pedang Besi', type: 'weapon', rarity: 'common', atk: 10, value: 50, icon: '🗡️', desc: '+10 Serangan' },
+            steel_armor: { id: 'steel_armor', name: 'Baju Zirah Baja', type: 'armor', rarity: 'uncommon', def: 12, value: 120, icon: '🛡️', desc: '+12 Pertahanan' },
+            flame_blade: { id: 'flame_blade', name: 'Pedang Api', type: 'weapon', rarity: 'rare', atk: 35, crit: 10, value: 350, icon: '🔥', desc: '+35 Serangan, +10% Kritis' },
+            dragon_mail: { id: 'dragon_mail', name: 'Pelindung Naga', type: 'armor', rarity: 'legendary', def: 50, hp: 150, value: 1200, icon: '🐉', desc: '+50 Pertahanan, +150 HP' }
         };
 
         /* --- GAME STATE --- */
@@ -865,9 +873,9 @@
             inventory: [ { ...ITEMS.potion_hp }, { ...ITEMS.iron_sword } ],
             unlockedAreas: ['starter', 'forest'],
             quests: [
-                { id: 'q1', title: 'Forest Threat', target: 'Slime', count: 0, required: 3, rewardGold: 50, rewardExp: 50, completed: false, areaToUnlock: 'ruins' },
-                { id: 'q2', title: 'Ruin Cleaner', target: 'Skeleton', count: 0, required: 3, rewardGold: 150, rewardExp: 150, completed: false, areaToUnlock: 'dungeon' },
-                { id: 'q3', title: 'Dragon Slayer', target: 'Ancient Dragon', count: 0, required: 1, rewardGold: 1000, rewardExp: 1000, completed: false, areaToUnlock: 'dragon' }
+                { id: 'q1', title: 'Ancaman Hutan', target: 'Slime', count: 0, required: 3, rewardGold: 50, rewardExp: 50, completed: false, areaToUnlock: 'ruins' },
+                { id: 'q2', title: 'Pembersih Reruntuhan', target: 'Tengkorak', count: 0, required: 3, rewardGold: 150, rewardExp: 150, completed: false, areaToUnlock: 'dungeon' },
+                { id: 'q3', title: 'Pemburu Naga', target: 'Naga Kuno', count: 0, required: 1, rewardGold: 1000, rewardExp: 1000, completed: false, areaToUnlock: 'dragon' }
             ],
             combat: null
         };
@@ -923,7 +931,7 @@
                 card.innerHTML = `
                     <div class="area-name">${area.name}</div>
                     <div class="area-desc">${area.desc}</div>
-                    <button class="explore-btn" ${!isUnlocked ? 'disabled' : ''}>${isUnlocked ? 'Explore Area' : 'Locked'}</button>
+                    <button class="explore-btn" ${!isUnlocked ? 'disabled' : ''}>${isUnlocked ? 'Jelajahi Area' : 'Terkunci'}</button>
                 `;
                 if (isUnlocked) {
                     card.querySelector('button').onclick = () => startCombat(area.id);
@@ -935,7 +943,7 @@
         /* --- COMBAT ENGINE --- */
         function startCombat(areaId) {
             let enemyData;
-            // Check boss fight
+            // Cek pertarungan boss
             const areaBoss = BOSSES.find(b => b.area === areaId);
             const roll = Math.random();
 
@@ -950,7 +958,7 @@
 
             state.combat = { enemy: enemyData };
 
-            document.getElementById('combat-area-title').innerText = `Fighting in ${areaId.toUpperCase()}`;
+            document.getElementById('combat-area-title').innerText = `Bertarung di ${AREAS.find(a=>a.id===areaId).name}`;
             document.getElementById('enemy-name').innerText = enemyData.name;
             document.getElementById('enemy-avatar').innerText = enemyData.icon;
             document.getElementById('boss-tag').style.display = enemyData.isBoss ? 'inline-block' : 'none';
@@ -958,7 +966,7 @@
 
             switchTab('tab-combat');
             updateCombatUI();
-            logCombat(`A wild ${enemyData.name} appeared!`, 'log-enemy');
+            logCombat(`${enemyData.name} liar muncul!`, 'log-enemy');
         }
 
         function updateCombatUI() {
@@ -987,7 +995,7 @@
             if (isCrit) dmg = Math.floor(dmg * 1.5);
 
             state.combat.enemy.currentHp -= dmg;
-            logCombat(`You attacked for ${dmg} damage! ${isCrit ? 'CRITICAL!' : ''}`, isCrit ? 'log-crit' : 'log-player');
+            logCombat(`Kamu menyerang sebesar ${dmg} damage! ${isCrit ? 'SERANGAN KRITIS!' : ''}`, isCrit ? 'log-crit' : 'log-player');
 
             document.getElementById('enemy-card').classList.add('shake');
             setTimeout(() => document.getElementById('enemy-card').classList.remove('shake'), 400);
@@ -1008,13 +1016,13 @@
             state.player.hp = Math.max(0, state.player.hp - dmg);
             audio.sfxHit();
 
-            logCombat(`${enemy.name} strikes you for ${dmg} damage!`, 'log-enemy');
+            logCombat(`${enemy.name} menyerangmu sebesar ${dmg} damage!`, 'log-enemy');
 
             document.getElementById('player-card').classList.add('shake');
             setTimeout(() => document.getElementById('player-card').classList.remove('shake'), 400);
 
             if (state.player.hp <= 0) {
-                logCombat('You were defeated! Retreating to village...', 'log-enemy');
+                logCombat('Kamu kalah! Kembali ke desa untuk memulihkan diri...', 'log-enemy');
                 setTimeout(() => {
                     state.player.hp = state.player.maxHp;
                     switchTab('tab-map');
@@ -1026,7 +1034,7 @@
 
         function winCombat() {
             const enemy = state.combat.enemy;
-            logCombat(`You defeated ${enemy.name}!`, 'log-heal');
+            logCombat(`Kamu mengalahkan ${enemy.name}!`, 'log-heal');
 
             gainReward(enemy.exp, enemy.gold);
             checkQuests(enemy.name);
@@ -1051,7 +1059,7 @@
                 state.player.baseAtk += 4;
                 state.player.baseDef += 2;
                 audio.sfxLevelUp();
-                logCombat(`LEVEL UP! Reached Level ${state.player.level}!`, 'log-crit');
+                logCombat(`NAIK LEVEL! Mencapai Level ${state.player.level}!`, 'log-crit');
             }
         }
 
@@ -1081,11 +1089,11 @@
                 card.innerHTML = `
                     <div class="quest-info">
                         <div class="quest-title">${q.title}</div>
-                        <div style="font-size:12px; color:var(--text-muted);">Defeat ${q.target} (${q.count}/${q.required})</div>
-                        <div class="quest-reward">Reward: ${q.rewardGold} Gold, ${q.rewardExp} EXP</div>
+                        <div style="font-size:12px; color:var(--text-muted);">Kalahkan ${q.target} (${q.count}/${q.required})</div>
+                        <div class="quest-reward">Hadiah: ${q.rewardGold} Gold, ${q.rewardExp} EXP</div>
                     </div>
                     <div>
-                        ${q.completed ? '✅ Completed' : '⏳ In Progress'}
+                        ${q.completed ? '✅ Selesai' : '⏳ Dalam Proses'}
                     </div>
                 `;
                 list.appendChild(card);
@@ -1116,15 +1124,15 @@
                 <div class="equip-slot">
                     <span style="font-size:24px;">🗡️</span>
                     <div>
-                        <div style="font-size:11px; color:var(--text-muted);">Weapon</div>
-                        <div style="font-size:13px; font-weight:700;">${state.equipment.weapon ? state.equipment.weapon.name : 'Empty'}</div>
+                        <div style="font-size:11px; color:var(--text-muted);">Senjata</div>
+                        <div style="font-size:13px; font-weight:700;">${state.equipment.weapon ? state.equipment.weapon.name : 'Kosong'}</div>
                     </div>
                 </div>
                 <div class="equip-slot">
                     <span style="font-size:24px;">🛡️</span>
                     <div>
-                        <div style="font-size:11px; color:var(--text-muted);">Armor</div>
-                        <div style="font-size:13px; font-weight:700;">${state.equipment.armor ? state.equipment.armor.name : 'Empty'}</div>
+                        <div style="font-size:11px; color:var(--text-muted);">Pelindung</div>
+                        <div style="font-size:13px; font-weight:700;">${state.equipment.armor ? state.equipment.armor.name : 'Kosong'}</div>
                     </div>
                 </div>
             `;
@@ -1141,7 +1149,7 @@
             if (item.type === 'potion') {
                 const btn = document.createElement('button');
                 btn.className = 'explore-btn';
-                btn.innerText = 'Use Potion';
+                btn.innerText = 'Gunakan Obat';
                 btn.onclick = () => {
                     if (item.effect.hp) state.player.hp = Math.min(state.player.maxHp, state.player.hp + item.effect.hp);
                     state.inventory.splice(index, 1);
@@ -1152,7 +1160,7 @@
             } else if (item.type === 'weapon' || item.type === 'armor') {
                 const btn = document.createElement('button');
                 btn.className = 'explore-btn';
-                btn.innerText = 'Equip Item';
+                btn.innerText = 'Gunakan Alat';
                 btn.onclick = () => {
                     const slot = item.type;
                     if (state.equipment[slot]) state.inventory.push(state.equipment[slot]);
@@ -1198,7 +1206,7 @@
         /* --- SYSTEM SAVE/LOAD --- */
         function saveGame() {
             localStorage.setItem('renzz_rpg_save', JSON.stringify(state));
-            alert('Game Saved Successfully!');
+            alert('Game Berhasil Disimpan!');
         }
 
         function loadGame() {
@@ -1206,12 +1214,12 @@
             if (data) {
                 state = JSON.parse(data);
                 updateUI();
-                alert('Game Loaded!');
+                alert('Data Game Berhasil Dimuat!');
             }
         }
 
         function resetGame() {
-            if (confirm('Are you sure you want to reset all game data?')) {
+            if (confirm('Apakah kamu yakin ingin mereset seluruh data game?')) {
                 localStorage.removeItem('renzz_rpg_save');
                 location.reload();
             }
