@@ -2,11 +2,11 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { Code2, Compass, Gamepad2, Wrench, BookOpen, User, Flame, Menu, X, Zap } from 'lucide-react';
+import { Code2, Compass, Gamepad2, Wrench, BookOpen, User, Flame, Menu, X, Zap, LogIn } from 'lucide-react';
 import { useUser } from '@/context/UserContext';
 
 export default function Navbar() {
-  const { xp, level, streak } = useUser();
+  const { user, xp, level, streak } = useUser();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
@@ -23,7 +23,6 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           
-          {/* Logo Branding */}
           <Link href="/" className="flex items-center gap-2.5 group">
             <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-sky-500 to-indigo-500 flex items-center justify-center font-black text-white text-base shadow-sm group-hover:scale-105 transition-all">
               R
@@ -33,7 +32,6 @@ export default function Navbar() {
             </span>
           </Link>
 
-          {/* Navigasi Desktop */}
           <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => {
               const Icon = link.icon;
@@ -50,7 +48,6 @@ export default function Navbar() {
             })}
           </div>
 
-          {/* Profile & Stats Badge */}
           <div className="hidden md:flex items-center gap-3">
             <div className="flex items-center gap-3 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-white/10 text-xs font-medium text-slate-300">
               <span className="flex items-center gap-1.5 text-amber-400">
@@ -63,15 +60,24 @@ export default function Navbar() {
               <span className="text-indigo-400 font-mono">{xp} XP</span>
             </div>
 
-            <Link
-              href="/profile"
-              className="p-2 rounded-lg bg-slate-900 border border-white/10 text-slate-300 hover:text-white hover:border-white/20 transition-all"
-            >
-              <User className="w-4 h-4 text-sky-400" />
-            </Link>
+            {user ? (
+              <Link
+                href="/profile"
+                className="p-2 rounded-lg bg-slate-900 border border-white/10 text-slate-300 hover:text-white hover:border-white/20 transition-all flex items-center gap-2 text-xs font-mono"
+              >
+                <User className="w-4 h-4 text-sky-400" />
+                <span className="capitalize">{user.name}</span>
+              </Link>
+            ) : (
+              <Link
+                href="/login"
+                className="px-3.5 py-1.5 rounded-lg bg-sky-500 hover:bg-sky-400 text-white font-semibold text-xs flex items-center gap-1.5 shadow-sm transition-all"
+              >
+                <LogIn className="w-3.5 h-3.5" /> Login
+              </Link>
+            )}
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="md:hidden p-2 rounded-lg bg-slate-900 border border-white/10 text-slate-400"
@@ -81,9 +87,8 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-white/10 bg-[#090D16] px-4 pt-3 pb-5 space-y-1">
+        <div className="md:hidden border-t border-white/10 bg-[#090D16] px-4 pt-3 pb-5 space-y-2">
           {navLinks.map((link) => {
             const Icon = link.icon;
             return (
@@ -98,6 +103,15 @@ export default function Navbar() {
               </Link>
             );
           })}
+          {!user && (
+            <Link
+              href="/login"
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center justify-center gap-2 w-full py-2 rounded-lg bg-sky-500 text-white font-bold text-xs"
+            >
+              <LogIn className="w-4 h-4" /> Login Ke Renzz
+            </Link>
+          )}
         </div>
       )}
     </nav>

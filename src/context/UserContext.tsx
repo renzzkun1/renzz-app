@@ -3,7 +3,14 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { ACHIEVEMENTS_DATA } from '@/data/achievements';
 
+interface User {
+  name: string;
+  email: string;
+  provider: 'google' | 'facebook' | 'email';
+}
+
 interface UserState {
+  user: User | null;
   xp: number;
   level: number;
   streak: number;
@@ -11,6 +18,8 @@ interface UserState {
   completedQuizzes: string[];
   savedItems: string[];
   unlockedAchievements: string[];
+  login: (userData: User) => void;
+  logout: () => void;
   addXp: (amount: number) => void;
   markLessonComplete: (id: string, xp: number) => void;
   toggleSaveItem: (id: string) => void;
@@ -19,6 +28,7 @@ interface UserState {
 const UserContext = createContext<UserState | undefined>(undefined);
 
 export function UserProvider({ children }: { children: React.ReactNode }) {
+  const [user, setUser] = useState<User | null>(null);
   const [xp, setXp] = useState<number>(0);
   const [streak, setStreak] = useState<number>(1);
   const [completedLessons, setCompletedLessons] = useState<string[]>([]);
@@ -27,21 +37,33 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
   const [unlockedAchievements, setUnlockedAchievements] = useState<string[]>([]);
 
   useEffect(() => {
+    const savedUser = localStorage.getItem('renzz_user');
     const savedXp = localStorage.getItem('renzz_xp');
     const savedLessons = localStorage.getItem('renzz_lessons');
     const savedSaved = localStorage.getItem('renzz_saved');
+
+    if (savedUser) setUser(JSON.parse(savedUser));
     if (savedXp) setXp(parseInt(savedXp, 10));
     if (savedLessons) setCompletedLessons(JSON.parse(savedLessons));
     if (savedSaved) setSavedItems(JSON.parse(savedSaved));
   }, []);
 
-  // Periksa achievement yang terbuka setiap XP bertambah
   useEffect(() => {
     const unlocked = ACHIEVEMENTS_DATA.filter((ach) => ach.requiredXp && xp >= ach.requiredXp).map(
       (ach) => ach.id
     );
     setUnlockedAchievements(unlocked);
   }, [xp]);
+
+  const login = (userData: User) => {
+    setUser(userData);
+    localStorage.setItem('renzz_user', JSON.stringify(userData));
+  };
+
+  const logout = () => {
+    setUser(null);
+    localStorage.removeItem('renzz_user');
+  };
 
   const addXp = (amount: number) => {
     setXp((prev) => {
@@ -71,12 +93,12 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
     localStorage.setItem('renzz_saved', JSON.stringify(updated));
   };
 
-  // Setiap 100 XP = 1 Level
   const level = Math.floor(xp / 100) + 1;
 
   return (
     <UserContext.Provider
       value={{
+        user,
         xp,
         level,
         streak,
@@ -84,6 +106,8 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
         completedQuizzes,
         savedItems,
         unlockedAchievements,
+        login,
+        logout,
         addXp,
         markLessonComplete,
         toggleSaveItem,
