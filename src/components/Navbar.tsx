@@ -19,21 +19,21 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 bg-renzz-navy/80 backdrop-blur-md border-b border-slate-800 text-white">
+    <nav className="sticky top-0 z-50 bg-[#090D16]/80 backdrop-blur-xl border-b border-white/[0.08]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-renzz-blue via-renzz-cyan to-renzz-purple flex items-center justify-center font-black text-xl tracking-wider shadow-lg shadow-renzz-cyan/20 group-hover:scale-105 transition-transform">
+          {/* Logo Branding */}
+          <Link href="/" className="flex items-center gap-2.5 group">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-sky-500 to-indigo-500 flex items-center justify-center font-black text-white text-base shadow-sm group-hover:scale-105 transition-all">
               R
             </div>
-            <span className="font-extrabold text-xl tracking-wider bg-gradient-to-r from-white via-sky-200 to-renzz-accent bg-clip-text text-transparent">
+            <span className="font-extrabold text-lg tracking-wider text-white">
               RENZZ
             </span>
           </Link>
 
-          {/* Desktop Nav Items */}
+          {/* Navigasi Desktop */}
           <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => {
               const Icon = link.icon;
@@ -41,49 +41,49 @@ export default function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 transition-colors"
+                  className="flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-medium text-slate-400 hover:text-white hover:bg-white/[0.05] transition-all"
                 >
-                  <Icon className="w-4 h-4 text-renzz-accent" />
+                  <Icon className="w-4 h-4 text-sky-400/80" />
                   {link.label}
                 </Link>
               );
             })}
           </div>
 
-          {/* Gamification Stats & Profile Badge */}
-          <div className="hidden md:flex items-center gap-4">
-            <div className="flex items-center gap-3 px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-xs font-semibold">
-              <span className="flex items-center gap-1 text-amber-400">
-                <Flame className="w-4 h-4 fill-amber-400" />
-                {streak} Day
+          {/* Profile & Stats Badge */}
+          <div className="hidden md:flex items-center gap-3">
+            <div className="flex items-center gap-3 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-white/10 text-xs font-medium text-slate-300">
+              <span className="flex items-center gap-1.5 text-amber-400">
+                <Flame className="w-3.5 h-3.5 fill-amber-400" />
+                {streak}d
               </span>
-              <span className="w-px h-3 bg-slate-700" />
-              <span className="text-renzz-cyan font-mono">Lvl {level}</span>
-              <span className="w-px h-3 bg-slate-700" />
-              <span className="text-renzz-purple font-mono">{xp} XP</span>
+              <span className="w-px h-3 bg-white/10" />
+              <span className="text-sky-400 font-mono">Lvl {level}</span>
+              <span className="w-px h-3 bg-white/10" />
+              <span className="text-indigo-400 font-mono">{xp} XP</span>
             </div>
 
             <Link
               href="/profile"
-              className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-colors"
+              className="p-2 rounded-lg bg-slate-900 border border-white/10 text-slate-300 hover:text-white hover:border-white/20 transition-all"
             >
-              <User className="w-5 h-5 text-renzz-accent" />
+              <User className="w-4 h-4 text-sky-400" />
             </Link>
           </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 rounded-lg bg-slate-800 text-slate-300 hover:text-white"
+            className="md:hidden p-2 rounded-lg bg-slate-900 border border-white/10 text-slate-400"
           >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Drawer Navigation */}
+      {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-slate-800 bg-renzz-dark px-4 pt-2 pb-4 space-y-2">
+        <div className="md:hidden border-t border-white/10 bg-[#090D16] px-4 pt-3 pb-5 space-y-1">
           {navLinks.map((link) => {
             const Icon = link.icon;
             return (
@@ -91,21 +91,13 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-200 hover:bg-slate-800"
+                className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-300 hover:bg-white/[0.05]"
               >
-                <Icon className="w-5 h-5 text-renzz-cyan" />
+                <Icon className="w-4 h-4 text-sky-400" />
                 {link.label}
               </Link>
             );
           })}
-          <div className="pt-2 border-t border-slate-800 flex justify-between items-center text-xs font-mono text-slate-400">
-            <span>Level: {level}</span>
-            <span>XP: {xp}</span>
-            <span>Streak: {streak}d</span>
-            <Link href="/profile" onClick={() => setMobileMenuOpen(false)} className="text-renzz-accent underline">
-              Profile
-            </Link>
-          </div>
         </div>
       )}
     </nav>
